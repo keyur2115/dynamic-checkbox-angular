@@ -1,1 +1,18 @@
-<p>reactive-checkbox works!</p>
+<div class="container mt-5">
+	<header class="bg-light p-2"><h5 class="m-0">Angular Checkbox - Reactive Forms</h5></header>
+
+	<div class="mt-3 px-3">
+		<form [formGroup]="form">
+			<div class="form-group">
+				<label for="website"><strong>Select Website:</strong></label>
+				<ng-container *ngFor="let website of websiteList">
+					<div>
+					<input class="form-check-input" type="checkbox" [value]="website.name" (change)="onCheckBoxChange($event)">
+					{{website.name}}</div>
+				</ng-container>
+			</div>
+
+			<button class="btn btn-primary btn-sm" type="submit" (click)="onSubmit()">Submit</button>
+		</form>
+	</div>
+</div>
