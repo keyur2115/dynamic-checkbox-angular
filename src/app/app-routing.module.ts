@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component.ts';
+import { HomeComponent } from './home/home.component';
 import { ReactiveCheckboxComponent } from './reactive-checkbox/reactive-checkbox.component';
 import { TemplateCheckboxComponent } from './template-checkbox/template-checkbox.component';
 
