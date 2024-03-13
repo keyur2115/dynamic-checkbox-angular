@@ -15,4 +15,14 @@
 			<button class="btn btn-primary btn-sm" type="submit" (click)="onSubmit()">Submit</button>
 		</form>
 	</div>
+
+	<div *ngIf="checkBoxData" class="mt-5">
+			<div class="row gy-3 gx-3">
+				<div class="col-lg-2 col-md-4 col-6 card shadow"  *ngFor="let data of checkBoxData">
+					<ul>
+					   <li *ngFor="let item of data.website">{{item}}</li>
+					</ul>
+				</div>
+			</div>
+	</div>
 </div>

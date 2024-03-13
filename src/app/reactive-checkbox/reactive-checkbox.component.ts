@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-reactive-checkbox',
   templateUrl: './reactive-checkbox.component.html',
   styleUrls: ['./reactive-checkbox.component.scss']
 })
-export class ReactiveCheckboxComponent {
+export class ReactiveCheckboxComponent implements OnInit {
 
   form: FormGroup;
+  checkBoxData:any = [];
 
   websiteList: any = [
     { id: 1, name: 'Google.com' },
@@ -16,17 +18,20 @@ export class ReactiveCheckboxComponent {
     { id: 3, name: 'Codequs.com' }
   ];
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private api:ApiService){
     this.form = this.fb.group({
       website: this.fb.array([])
     })
   }
 
+  ngOnInit():void {
+    this.getData();
+
+  }
+
   onCheckBoxChange(event:any){
     console.log('event', event.target.value);
     const website:FormArray = this.form.get('website') as FormArray;
-
-    // console.log("website.control", website.controls);
 
     if(event.target.checked){
         website.push(new FormControl(event.target.value));
@@ -37,6 +42,16 @@ export class ReactiveCheckboxComponent {
     }
 
 
+  }
+
+  getData(){
+    this.api.getApi().then((res:any) => {
+      console.log(res);
+      if(res){
+        this.checkBoxData = res;
+      }
+      console.log("checkboxdata", this.checkBoxData);
+    })
   }
 
   onSubmit(){

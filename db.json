@@ -1,0 +1,8 @@
+{
+  "posts": [
+   {"username":"keyur", "website":["google.com", "Angular.com"]},
+    {"username":"keyur", "website":["google.com", "Angular.com"]},
+    {"username":"keyur", "website":["google.com", "Angular.com"]}
+  ]
+
+}
