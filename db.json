@@ -1,8 +1,24 @@
 {
   "posts": [
-   {"username":"keyur", "website":["google.com", "Angular.com"]},
-    {"username":"keyur", "website":["google.com", "Angular.com"]},
-    {"username":"keyur", "website":["google.com", "Angular.com"]}
+    {
+      "name": "",
+      "website": [],
+      "id": 2
+    },
+    {
+      "name": "",
+      "website": [
+        "Google.com"
+      ],
+      "id": 3
+    },
+    {
+      "name": "",
+      "website": [
+        "Google.com",
+        "Codequs.com"
+      ],
+      "id": 5
+    }
   ]
-
 }

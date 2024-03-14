@@ -20,6 +20,7 @@ export class ReactiveCheckboxComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private api:ApiService){
     this.form = this.fb.group({
+      name:[''],
       website: this.fb.array([])
     })
   }
@@ -38,7 +39,6 @@ export class ReactiveCheckboxComponent implements OnInit {
     } else {
        const index = website.controls.findIndex(x => x.value === event.target.value);
        website.removeAt(index);
-       
     }
 
 
@@ -54,7 +54,20 @@ export class ReactiveCheckboxComponent implements OnInit {
     })
   }
 
+  deleteData(id:any, index:any){
+    this.api.deleteApi(id).then((res:any) => {
+      if(res){
+        this.checkBoxData.splice(index, 1);
+      }
+    })
+  }
+
+
   onSubmit(){
     console.log("this.form.value", this.form.value);
+
+    this.api.addApi(this.form.value).then((res:any) => {
+       this.checkBoxData = res;
+    })
   }
 }

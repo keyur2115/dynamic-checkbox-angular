@@ -37,4 +37,14 @@ export class ApiService {
       })
     })
   }
+
+  deleteApi(id:any){
+    return new Promise((resolve, reject) => {
+      return this.http.delete(this.url+id).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
 }
