@@ -4,19 +4,15 @@
 	<div class="mt-3 px-3">
 		<form [formGroup]="form">
 			<div class="form-group">
-				<label class="form-label" for="name">Name</label>
-				<input type="text" class="form-control" placeholder="Name" formControlName="name">
-			</div>
-			<div class="form-group">
 				<label for="website"><strong>Select Website:</strong></label>
 				<ng-container *ngFor="let website of websiteList; let i = index;">
 					<div>
-					<input class="form-check-input" type="checkbox" [value]="website.name" (change)="onCheckBoxChange($event)">
-					{{website.name}}</div>
+					<input class="form-check-input" type="checkbox" [value]="website" (change)="onCheckBoxChange($event)">
+					{{website}}</div>
 				</ng-container>
 			</div>
 
-			<button class="btn btn-primary btn-sm" type="submit" (click)="onSubmit()">Submit</button>
+			<button class="btn btn-primary btn-sm mt-3" type="submit" (click)="onSubmit()">Submit</button>
 		</form>
 	</div>
 
@@ -29,16 +25,16 @@
 						<div (click)="deleteData(data.id, i)" class=" btn-round">
 							<i class="fa-solid fa-delete-left text-danger"></i>
 						</div>
-						<div (click)="updateModal(data.website)" class="btn-round">
+						<div (click)="updateModal(data)" class="btn-round">
 							<i class="fa-solid fa-pen-fancy text-success"></i>
 						</div>
 					</div>
-						<ul *ngIf="data.website.length">
-						   <li *ngFor="let item of data.website">
-						  	<span *ngIf="data.website.length"> {{item}} </span>
-						  </li>
-						</ul>
-					  	<span *ngIf="!data.website.length" class="px-2 py-3">No Data Available</span>
+					<ul *ngIf="data.website.length">
+					   <li *ngFor="let item of data.website">
+					  	<span *ngIf="data.website.length"> {{item}} </span>
+					  </li>
+					</ul>
+				  	<span *ngIf="!data.website.length" class="px-2 py-3">No Data Available</span>
 					</div>
 				</div>
 			</div>
@@ -47,7 +43,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="checkboxModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -55,25 +51,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         	<form [formGroup]="form">
-	      <div class="modal-body">
-				<div class="form-group">
-					<label class="form-label" for="name">Name</label>
-					<input type="text" class="form-control" placeholder="Name" formControlName="name">
-				</div>
-				<div class="form-group">
-					<label for="website"><strong>Select Website:</strong></label>
-					<ng-container *ngFor="let website of websiteList; let i = index;">
-						<div>
-						<input class="form-check-input" type="checkbox" [value]="website.name" (change)="onCheckBoxChange($event)">
-						{{website.name}}</div>
-					</ng-container>
-				</div>
-
-				<button class="btn btn-primary btn-sm" type="submit" (click)="onSubmit()">Submit</button>
-	      </div>
+		      <div class="modal-body">
+					<div class="form-group">
+						<label for="website"><strong>Select Website:</strong></label>
+						<ng-container *ngFor="let website of websiteList; let i = index;">
+							<div>
+							<input class="form-check-input" type="checkbox" [value]="website" (change)="onCheckBoxChange($event)" [checked]=chackboxUpdateObj[website]>
+							{{website}}</div>
+						</ng-container>
+					</div>
+		      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-success">Update</button>
+	        <button type="button" class="btn btn-success" (click)="updateData()">Update</button>
 	      </div>
 		</form>
     </div>

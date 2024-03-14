@@ -30,7 +30,7 @@ export class ApiService {
 
   updateApi(id:any, data:any){
     return new Promise((resolve, reject) => {
-      return this.http.get(this.url+id, data).subscribe((res) => {
+      return this.http.patch(this.url+id, data).subscribe((res) => {
         resolve(res);
       }, (err) => {
         reject(err);
