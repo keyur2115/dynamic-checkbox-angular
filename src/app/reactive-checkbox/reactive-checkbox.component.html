@@ -23,12 +23,13 @@
 	<div *ngIf="checkBoxData" class="mt-5">
 			<div class="row gy-3 gx-3">
 				<div class="col-lg-2 col-md-4 col-6 "  *ngFor="let data of checkBoxData; let i = index;">
-					<div class="card shadow h-100" [ngClass]="i % 2 == 0 ? 'bg-info text-white': 'bg-warning'">
+					<div class="card shadow h-100"
+					[ngClass]="[i % 2 == 0 && data.website.length ? 'bg-info text-white': 'bg-warning', !data.website.length ? 'bg-dark text-white':'']">
 					<div class="d-flex justify-content-between align-items-center">
 						<div (click)="deleteData(data.id, i)" class=" btn-round">
 							<i class="fa-solid fa-delete-left text-danger"></i>
 						</div>
-						<div (click)="deleteData(data.id, i)" class=" btn-round">
+						<div (click)="updateModal(data.website)" class="btn-round">
 							<i class="fa-solid fa-pen-fancy text-success"></i>
 						</div>
 					</div>
@@ -42,4 +43,39 @@
 				</div>
 			</div>
 	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        	<form [formGroup]="form">
+	      <div class="modal-body">
+				<div class="form-group">
+					<label class="form-label" for="name">Name</label>
+					<input type="text" class="form-control" placeholder="Name" formControlName="name">
+				</div>
+				<div class="form-group">
+					<label for="website"><strong>Select Website:</strong></label>
+					<ng-container *ngFor="let website of websiteList; let i = index;">
+						<div>
+						<input class="form-check-input" type="checkbox" [value]="website.name" (change)="onCheckBoxChange($event)">
+						{{website.name}}</div>
+					</ng-container>
+				</div>
+
+				<button class="btn btn-primary btn-sm" type="submit" (click)="onSubmit()">Submit</button>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-success">Update</button>
+	      </div>
+		</form>
+    </div>
+  </div>
 </div>

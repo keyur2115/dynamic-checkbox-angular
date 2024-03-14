@@ -62,6 +62,10 @@ export class ReactiveCheckboxComponent implements OnInit {
     })
   }
 
+  updateModal(data:any){
+    
+  }
+
 
   onSubmit(){
     console.log("this.form.value", this.form.value);
